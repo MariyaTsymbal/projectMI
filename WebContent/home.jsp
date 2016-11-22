@@ -10,18 +10,38 @@
 <head>
 <title>Foods R Us</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link media="screen, print" title="cse4413" type="text/css"	href="css/Food.css" rel="StyleSheet" />
 </head>
 <body>
-	<nav>
-	<a href="home.jsp"> FOODS R US</a>
-	<a href="Login.jsp" > Sign In</a>
-	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
-	Search: <input type="text" value="search for products..."/>
-	<button type="submit" name="searchButton"> <i class="fa fa-search"> .</i>
-	</button>
+	<nav class="top-nav">	
+	<div class="top">
+	<div class="logo">
+		<a href="home.jsp"> FOODS R US</a>
+	</div>
 	
+	<div class="links">
+	<ul>
+	<li>
+	<a href="Login.jsp" > Sign In</a>
+	</li>
+	<li>
+	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
+	</li>
+	<li>
+	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
+	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
+	</button>
+	</li>
+	<li>
 	<a href="catalogue.jsp">Browse</a>
+	</li>
+	
+	</ul>
+	</div>
+	</div>
 	</nav>
+	
+	<h1  style="font-size:54px">FOODS R US</h1>
 	
 	
 	

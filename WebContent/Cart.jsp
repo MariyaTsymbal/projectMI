@@ -9,8 +9,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Checkout</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+<link media="screen, print" title="cse4413" type="text/css"	href="css/Food.css" rel="StyleSheet" />
+
 </head>
 <body>
+	
+		<nav class="top-nav">	
+	<div class="top">
+	<div class="logo">
+		<a href="home.jsp"> FOODS R US</a>
+	</div>
+	
+	<div class="links">
+	<ul>
+	<li>
+	<a href="Login.jsp" > Sign In</a>
+	</li>
+	<li>
+	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
+	</li>
+	<li>
+	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
+	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
+	</button>
+	</li>
+	<li>
+	<a href="catalogue.jsp">Browse</a>
+	</li>
+	
+	</ul>
+	</div>
+	</div>
+	</nav>
+	
 	
 	<div>
 	<h1>Shopping Bag</h1><hr/>
@@ -20,7 +53,7 @@
 	
 	</c:forEach>
 	</c:if>
-	<input type="button" name="shopMore" id="shopMore" value="Continue Shopping"/>
+	<input type="button" class="but" name="shopMore" id="shopMore" value="Continue Shopping"/>
 	</div>
 	
 	<div>
@@ -41,11 +74,11 @@
 	<tr>
 		<td>Shipping</td>
 		<c:choose>
-		<c:when test="${PriceTotal} lt 100">
-		<td>$5.00</td>
+		<c:when test="${PriceTotal} ge 100">
+		<td>Free!</td>
 		</c:when>
 		<c:otherwise>
-		<td>Free!</td>
+		<td>$5.00</td>
 		</c:otherwise>
 		</c:choose>
 	</tr>
@@ -60,7 +93,9 @@
 	</tr>
 	
 	</table>
-	<input type="button" name="checkout" id="checkout" value="Checkout"/>
+	
+	<input type="button" class="but" name="checkout" id="checkout" value="Checkout"/>
+	
 	</div>
 	
 </body>
