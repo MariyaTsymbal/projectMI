@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,12 +17,13 @@ import java.sql.SQLException;
 public class CategoryDAO
 {
 private DataSource dataSource;
+
 	
 	public CategoryDAO() throws Exception
 	{
 		try{
-			this.dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Category");
-			//this.dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Item");
+			this.dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/EECS");
+			
 		}
 		catch(NamingException e)
 		{
@@ -31,24 +33,32 @@ private DataSource dataSource;
 		
 	}
 	
-	public CategoryBean getCategory(int id, String name, String description, Blob image) throws Exception
+	public ArrayList<CategoryBean> getCategories() throws Exception
 	{
+		ArrayList<CategoryBean> list = new ArrayList<CategoryBean>();
+		
 		Connection connection = (Connection) dataSource.getConnection();
 		Statement statement = connection.createStatement();
-		statement.execute("select * from Category");
+		statement.execute("select * from ROUMANI.Category order by name");
 		ResultSet result = statement.getResultSet();
 		
-		CategoryBean mb = null;
+		System.out.println("Result set before if");
 		
-		if(result.next()!=false)
+		while(result.next())
 		{
-			mb = new CategoryBean(id,name,description,image);
+			System.out.println("Result set:");
+			CategoryBean nb = new CategoryBean(result.getInt("ID"),new String(result.getString("NAME")), new String(result.getString("DESCRIPTION")));
+			System.out.println(nb.toString());
+			try{list.add(nb);} catch(Exception e)
+			{
+				System.out.println("Cought exception while adding bean to linked list");
+			}
 		}
 		result.close();
 		statement.getConnection().close();
 		statement.close();
 		
-		return mb;
+		return list;
 		
 	}
 	

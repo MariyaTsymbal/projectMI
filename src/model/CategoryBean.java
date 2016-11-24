@@ -9,18 +9,19 @@ public class CategoryBean
 	private String description;
 	private Blob image;
 	
-	public CategoryBean(int id, String name, String description, Blob image)
+	public CategoryBean(int id, String name, String description)
 	{
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.image = image;
+		//this.image = image;
 	}
 	@Override
 	public String toString()
 	{
-		return "CategoryBean [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+		//return "CategoryBean [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+		return "CategoryBean [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	public int getId()
 	{

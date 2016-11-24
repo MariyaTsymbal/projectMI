@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -26,24 +27,25 @@ public class ItemDao
 		
 	}
 	
-	public ItemBean getItem(String number,String name, double price, int qty, int onOrder,int reOrder, int catId, int supId, double costPrice, String unit) throws Exception
+	public ArrayList<ItemBean> getItems() throws Exception
 	{
+		ArrayList<ItemBean> items = new ArrayList<ItemBean>();
 		Connection connection = (Connection) dataSource.getConnection();
 		Statement statement = connection.createStatement();
-		statement.execute("select * from Item");
+		statement.execute("select * from ROUMANI.Item");
 		ResultSet result = statement.getResultSet();
 		
-		ItemBean mb = null;
+	
 		
-		if(result.next()!=false)
+		if(result.next())
 		{
-			mb = new ItemBean(number,name,price,qty,onOrder,reOrder,catId,supId,costPrice,unit);
+			//ItemBean ib = new ItemBean(result.get);
 		}
 		result.close();
 		statement.getConnection().close();
 		statement.close();
 		
-		return mb;
+		return items;
 		
 	}
 }
