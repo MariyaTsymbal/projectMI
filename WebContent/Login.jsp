@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=UTF-8" 
 		pageEncoding="UTF-8" session="false"/>
 	<jsp:output doctype-root-element="html"
@@ -23,7 +23,7 @@
 	<div class="links">
 	<ul>
 	<li>
-	<a href="Login.jsp" > Sign In</a>
+	<a href="${pageContext.request.contextPath}/Admin" > Sign In</a>
 	</li>
 	<li>
 	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
@@ -42,14 +42,23 @@
 	</div>
 	</nav>
 	
-	
-	<div><h1>Sign in</h1>
+	<form action="" method="POST">
+	<c:choose>
+		<c:when test="${empty Authorized}">
+		<div><h1>Sign in</h1>
 	<hr/>
 	Login <br/> <input type="text" id ="name" name="name" value="name"/><br/>
-	<br/>Password <br/> <input type="password" id="pass" name="pass" value="password"/><br/>
+	<br/>
+	Password <br/> <input type="password" id="pass" name="pass" value="password"/><br/>
 	<input type="submit" class="but" id="login" name="login" value="Login"/>
 	
 	</div>
+	</c:when>
+	<c:otherwise>
+		<h1>Welcome param['name']!</h1>
+	</c:otherwise>
+	</c:choose>
+	</form>
 	
 	
 </body>

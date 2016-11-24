@@ -24,7 +24,7 @@
 
 			<div class="links">
 				<ul>
-					<li><a href="Login.jsp"> Sign In</a></li>
+					<li><a href="${pageContext.request.contextPath}/Admin"> Sign In</a></li>
 					<li><a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
 					</li>
 					<li>Search: <input type="text" id="searchBar" name="searchBar"
