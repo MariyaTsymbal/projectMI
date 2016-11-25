@@ -48,7 +48,7 @@ private DataSource dataSource;
 		{
 			System.out.println("Result set:");
 			CategoryBean nb = new CategoryBean(result.getInt("ID"),new String(result.getString("NAME")), new String(result.getString("DESCRIPTION")));
-			System.out.println(nb.toString());
+			//System.out.println(nb.toString());
 			try{list.add(nb);} catch(Exception e)
 			{
 				System.out.println("Cought exception while adding bean to linked list");

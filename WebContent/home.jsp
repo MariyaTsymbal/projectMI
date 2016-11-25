@@ -43,8 +43,13 @@
 	<h1 style="font-size: 54px">FOODS R US</h1>
 
 	<c:if test="${not empty categories}">
-		<c:forEach var="item" items="${categories}">
-			<p value="${item.name}">${item.name}${item.description}</p>
+		<c:forEach var="category" items="${categories}">
+			<p value="${category.name}">${category.name}</p>
+			<c:forEach var="item" items="${items}">
+				<c:if test="${item.catId eq category.id}">
+				<p>${item.name}</p>
+				</c:if>
+			</c:forEach>
 		</c:forEach>
 
 

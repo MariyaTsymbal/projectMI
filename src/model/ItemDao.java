@@ -17,7 +17,7 @@ public class ItemDao
 	public ItemDao()throws Exception
 	{
 		try{
-			this.dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Item");
+			this.dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/EECS");
 		}
 		catch(NamingException e)
 		{
@@ -37,14 +37,24 @@ public class ItemDao
 		
 	
 		
-		if(result.next())
+		while(result.next())
 		{
-			//ItemBean ib = new ItemBean(result.get);
+			//public ItemBean(String number, String name, double price, int qty, int catId)
+			try{
+			ItemBean ib = new ItemBean(result.getString("NUMBER"), result.getString("NAME"), result.getDouble("PRICE"), result.getInt("QTY"), result.getInt("CATID"));
+			items.add(ib);
+			//System.out.println(ib.toString());
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception was cought in the while loop of ItemDao");
+			}
+			
 		}
 		result.close();
 		statement.getConnection().close();
 		statement.close();
-		
+		System.out.println("Number of items: "+ items.size());
 		return items;
 		
 	}

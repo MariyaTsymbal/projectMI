@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CategoryBean;
 import model.CategoryDAO;
+import model.ItemBean;
+import model.ItemDao;
 
 /**
  * Servlet implementation class Home
@@ -40,9 +42,20 @@ public class Home extends HttpServlet {
 		CategoryDAO cd = new CategoryDAO();
 		System.out.println("1");
 		ArrayList<CategoryBean> categories = (ArrayList<CategoryBean>)cd.getCategories();
+		
+		try{
+		ItemDao id = new ItemDao();
+		ArrayList<ItemBean> items = (ArrayList<ItemBean>) id.getItems();
+		request.setAttribute("items", items);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error creating ItemDao instance");
+		}
 		System.out.println("2");
 		//System.out.print("Number of categories: "+categories.size());
 		request.setAttribute("categories", categories);
+		
 		
 		
 		

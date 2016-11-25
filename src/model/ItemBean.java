@@ -12,27 +12,31 @@ public class ItemBean
 	private int supId;
 	private double costPrice;
 	private String unit;
-	public ItemBean(String number, String name, double price, int qty, int onOrder, int reOrder, int catId, int supId,
-			double costPrice, String unit)
+	
+	//public ItemBean(String number, String name, double price, int qty, int onOrder, int reOrder, int catId, int supId,
+			//double costPrice, String unit)
+	public ItemBean(String number, String name, double price, int qty, int catId)
 	{
 		super();
 		this.number = number;
 		this.name = name;
 		this.price = price;
 		this.qty = qty;
-		this.onOrder = onOrder;
-		this.reOrder = reOrder;
+		//this.onOrder = onOrder;
+		//this.reOrder = reOrder;
 		this.catId = catId;
-		this.supId = supId;
-		this.costPrice = costPrice;
-		this.unit = unit;
+		//this.supId = supId;
+		//this.costPrice = costPrice;
+		//this.unit = unit;
 	}
 	@Override
 	public String toString()
 	{
-		return "ItemBean [number=" + number + ", name=" + name + ", price=" + price + ", qty=" + qty + ", onOrder="
+		return "ItemBean [number=" + number + ", name=" + name +", price="+price+ ", qty=" + qty + ", catId=" + catId +"]";
+		/*return "ItemBean [number=" + number + ", name=" + name + ", price=" + price + ", qty=" + qty + ", onOrder="
 				+ onOrder + ", reOrder=" + reOrder + ", catId=" + catId + ", supId=" + supId + ", costPrice="
 				+ costPrice + ", unit=" + unit + "]";
+		*/
 	}
 	public String getNumber()
 	{
