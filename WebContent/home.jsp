@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
-		<jsp:directive.page contentType="text/html; charset=UTF-8" 
-		pageEncoding="UTF-8" session="true"/>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Catalogue</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link media="screen, print" title="cse4413" type="text/css"	href="css/Food.css" rel="StyleSheet" />
+<title>Foods R Us</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link media="screen, print" title="cse4413" type="text/css"
+	href="css/Food.css" rel="StyleSheet" />
 </head>
 <body>
-	<nav class="top-nav">	
-	<div class="top">
-	<div class="logo">
-		<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
-	</div>
-	
-	<div class="links">
+	<nav class="top-nav">
+		<div class="top">
+			<div class="logo">
+				<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
+			</div>
+
+			<div class="links">
 	<ul>
 	<li>
 	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
@@ -43,14 +46,14 @@
 	</c:choose>
 	</a></li>
 	</ul>
-	</div>
-	</div>
+			</div>
+		</div>
 	</nav>
 
 	<h1 style="font-size: 54px">FOODS R US</h1>
 
 	<c:if test="${not empty categories}">
-		<c:forEach var="category" items="${categories}">
+		c:forEach var="category" items="${categories}">
 			<p value="${category.name}">${category.name}</p>
 			<c:forEach var="item" items="${items}">
 				<c:if test="${item.catId eq category.id}">
