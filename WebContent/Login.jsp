@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=UTF-8" 
-		pageEncoding="UTF-8" session="false"/>
+		pageEncoding="UTF-8" session="true"/>
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
@@ -17,47 +17,48 @@
 	<nav class="top-nav">	
 	<div class="top">
 	<div class="logo">
-		<a href="home.jsp"> FOODS R US</a>
+		<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
 	</div>
 	
 	<div class="links">
 	<ul>
 	<li>
-	<a href="${pageContext.request.contextPath}/Admin" > Sign In</a>
+	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 	</li>
 	<li>
-	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
+	<a href="${pageContext.request.contextPath}/Cart"> <i class="fa fa-shopping-cart">Checkout</i></a>
 	</li>
 	<li>
 	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
 	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
 	</button>
 	</li>
-	<li>
-	<a href="catalogue.jsp">Browse</a>
-	</li>
 	
+	<li>
+	<a href="${pageContext.request.contextPath}/Admin" > 
+	<c:choose>
+		<c:when test="${not empty sessionScope.Authorized}">
+			Your Account
+		</c:when>
+		<c:otherwise> Sign in </c:otherwise>
+	</c:choose>
+	</a></li>
 	</ul>
 	</div>
 	</div>
 	</nav>
 	
 	<form action="" method="POST">
-	<c:choose>
-		<c:when test="${empty Authorized}">
-		<div><h1>Sign in</h1>
-	<hr/>
-	Login <br/> <input type="text" id ="name" name="name" value="name"/><br/>
-	<br/>
-	Password <br/> <input type="password" id="pass" name="pass" value="password"/><br/>
-	<input type="submit" class="but" id="login" name="login" value="Login"/>
 	
-	</div>
-	</c:when>
-	<c:otherwise>
-		<h1>Welcome param['name']!</h1>
-	</c:otherwise>
-	</c:choose>
+		<div><h1>Sign in</h1>
+		<hr/>
+		Login <br/> <input type="text" id ="name" name="name" value="name"/><br/>
+		<br/>
+		Password <br/> <input type="password" id="pass" name="pass" value="password"/><br/>
+		<input type="submit" class="but" id="login" name="login" value="Login"/>
+	
+		</div>
+	
 	</form>
 	
 	
