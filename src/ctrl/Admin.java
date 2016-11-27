@@ -1,6 +1,11 @@
 package ctrl;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +31,30 @@ public class Admin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if (request.getSession().getAttribute("maxPrinciple") !=null){
-				request.setAttribute("maxPrinciple", request.getSession().getAttribute("maxPrinciple"));
-				//request.getSession().getServletContext().setInitParameter("maxPrinciple", ""+request.getSession().getAttribute("maxPrinciple"));
-		}	
-		this.getServletContext().getRequestDispatcher("/MaxP.jsp").forward(request, response);
-		
+						
+		if (request.getSession().getAttribute("Authorized") != null){
+			//this.getServletContext().getRequestDispatcher("/Account.jsp").forward(request, response);
+
+			if (request.getParameter("logout") !=null){
+				request.getSession().removeAttribute("Authorized");
+				this.getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+
+			}
+			else if(request.getParameter("browse") !=null){
+				this.getServletContext().getRequestDispatcher("/Catalogue.jsp").forward(request, response);
+
+			}
+			else {
+				this.getServletContext().getRequestDispatcher("/Account.jsp").forward(request, response);
+
+			}
+		}
+		else {
+			this.getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+		}
+				
+			
+
 	}
 
 	/**
@@ -40,7 +62,68 @@ public class Admin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+		if (request.getParameter("login") != null)
+		{
+			
+				String hash = "emptyHash";
+				try
+				{
+					hash = javax.xml.bind.DatatypeConverter.printHexBinary(MessageDigest.getInstance("SHA1").digest((request.getParameter("pass")).getBytes()));
+					//hash = request.getParameter("pass");
+					System.out.print(hash);
+				} catch (NoSuchAlgorithmException e)
+				{
+					e.printStackTrace();
+				}
+				
+				String realPath = request.getServletContext().getRealPath("/WEB-INF/passwords");
+				
+				BufferedReader file = new BufferedReader(new FileReader(realPath));
+				
+				String line = file.readLine();
+				
+				while (line != null)
+				{
+					String[] split = line.split(" ");
+					String login = split[0];
+					String password = split[1];
+					
+					if (login.equals(request.getParameter("name")) && password.equals(hash))
+					{
+						request.getSession().setAttribute("Authorized", "Success");
+						request.getSession().setAttribute("user", request.getParameter("name"));
+						break;
+					}	
+					line = file.readLine();
+				}
+				
+		}
+		
+		if (request.getSession().getAttribute("Authorized") != null)
+		{
+		//	this.getServletContext().getRequestDispatcher("/Account.jsp").forward(request, response);
+
+			if (request.getParameter("logout") !=null){
+				request.getSession().removeAttribute("Authorized");
+				this.getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+
+			}
+			else if(request.getParameter("browse") !=null){
+				this.getServletContext().getRequestDispatcher("/Catalogue.jsp").forward(request, response);
+
+			}
+			else {
+			this.getServletContext().getRequestDispatcher("/Account.jsp").forward(request, response);
+			}
+		}
+		else
+		{
+			this.getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+			
+		}
+	
 	}
 
 }
