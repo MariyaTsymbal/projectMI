@@ -24,7 +24,8 @@
 
 			<div class="links">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/Admin"> Sign In</a></li>
+					<li><a href="${pageContext.request.contextPath}/Admin">
+							Sign In</a></li>
 					<li><a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
 					</li>
 					<li>Search: <input type="text" id="searchBar" name="searchBar"
@@ -44,16 +45,34 @@
 
 	<c:if test="${not empty categories}">
 		<c:forEach var="category" items="${categories}">
-			<p value="${category.name}">${category.name}</p>
+			<p value="${category.name}" id="category">${category.name}</p>
 			<c:forEach var="item" items="${items}">
 				<c:if test="${item.catId eq category.id}">
-				<p>${item.name}</p>
+					<form action="" method="Post">
+						<table>
+							<tr>
+								<td>${item.name}</td>
+
+							</tr>
+							<tr>
+								<td>${item.number}</td>
+							</tr>
+							<tr>
+								<td>${item.price}</td>
+							</tr>
+							<tr>
+								<td>${item.qty}</td>
+							</tr>
+							<tr>
+								<td>Quantity to Purchase:</td>
+								<td><input type="text" name="qty" value="1"></input></td>
+								<td><input type="submit" id="${item.number}" name="${item.number}" value="Add to Cart"></input></td>
+							</tr>
+						</table>
+					</form>
 				</c:if>
 			</c:forEach>
 		</c:forEach>
-
-
-
 	</c:if>
 
 
