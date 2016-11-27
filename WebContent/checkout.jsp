@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<nav class="top-nav">	
+<nav class="top-nav">	
 	<div class="top">
 	<div class="logo">
 		<a href="home.jsp"> FOODS R US</a>
@@ -23,24 +23,31 @@
 	<div class="links">
 	<ul>
 	<li>
-	<a href="${pageContext.request.contextPath}/Admin" > Sign In</a>
+	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 	</li>
 	<li>
-	<a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
+	<a href="${pageContext.request.contextPath}/Cart"> <i class="fa fa-shopping-cart">Checkout</i></a>
 	</li>
 	<li>
 	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
 	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
 	</button>
 	</li>
-	<li>
-	<a href="catalogue.jsp">Browse</a>
-	</li>
 	
+	<li>
+	<a href="${pageContext.request.contextPath}/Admin" > 
+	<c:choose>
+		<c:when test="${not empty sessionScope.Authorized}">
+			Your Account
+		</c:when>
+		<c:otherwise> Sign in </c:otherwise>
+	</c:choose>
+	</a></li>
 	</ul>
 	</div>
 	</div>
 	</nav>
+	
 	
 	<h1>Checkout</h1><hr/>
 </body>

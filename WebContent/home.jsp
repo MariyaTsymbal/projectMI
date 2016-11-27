@@ -16,48 +16,13 @@
 	href="css/Food.css" rel="StyleSheet" />
 </head>
 <body>
-<<<<<<< HEAD
-	<nav class="top-nav">
-		<div class="top">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
-			</div>
-
-			<div class="links">
-=======
-<<<<<<< HEAD
-	<nav class="top-nav">
-		<div class="top">
-			<div class="logo">
-				<a href="home.jsp"> FOODS R US</a>
-			</div>
-
-			<div class="links">
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/Admin">
-							Sign In</a></li>
-					<li><a href="Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
-					</li>
-					<li>Search: <input type="text" id="searchBar" name="searchBar"
-						value="search for products..." />
-						<button type="submit" name="searchButton" id="searchButton">
-							<i class="fa fa-search"> .</i>
-						</button>
-					</li>
-					<li><a href="catalogue.jsp">Browse</a></li>
-
-				</ul>
-			</div>
-		</div>
-=======
-	<nav class="top-nav">	
+<nav class="top-nav">	
 	<div class="top">
 	<div class="logo">
-		<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
+		<a href="home.jsp"> FOODS R US</a>
 	</div>
 	
 	<div class="links">
->>>>>>> origin/master
 	<ul>
 	<li>
 	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
@@ -81,15 +46,11 @@
 	</c:choose>
 	</a></li>
 	</ul>
-<<<<<<< HEAD
-			</div>
-		</div>
-=======
 	</div>
 	</div>
->>>>>>> origin/master
->>>>>>> origin/master
 	</nav>
+	
+
 
 	<h1 style="font-size: 54px">FOODS R US</h1>
 
@@ -124,12 +85,6 @@
 			</c:forEach>
 		</c:forEach>
 	</c:if>
-
-
-
-
-
-
 
 </body>
 	</html>
