@@ -16,40 +16,37 @@
 	href="css/Food.css" rel="StyleSheet" />
 </head>
 <body>
-<nav class="top-nav">	
-	<div class="top">
-	<div class="logo">
-		<a href="home.jsp"> FOODS R US</a>
-	</div>
-	
-	<div class="links">
-	<ul>
-	<li>
-	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
-	</li>
-	<li>
-	<a href="${pageContext.request.contextPath}/Cart"> <i class="fa fa-shopping-cart">Checkout</i></a>
-	</li>
-	<li>
-	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
-	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
-	</button>
-	</li>
-	
-	<li>
-	<a href="${pageContext.request.contextPath}/Admin" > 
-	<c:choose>
-		<c:when test="${not empty sessionScope.Authorized}">
+	<nav class="top-nav">
+		<div class="top">
+			<div class="logo">
+				<a href="home.jsp"> FOODS R US</a>
+			</div>
+
+			<div class="links">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/eFoods">Browse</a>
+					</li>
+					<li><a href="${pageContext.request.contextPath}/Cart"> <i
+							class="fa fa-shopping-cart">Checkout</i></a></li>
+					<li>Search: <input type="text" id="searchBar" name="searchBar"
+						value="search for products..." />
+						<button type="submit" name="searchButton" id="searchButton">
+							<i class="fa fa-search"> .</i>
+						</button>
+					</li>
+
+					<li><a href="${pageContext.request.contextPath}/Admin"> <c:choose>
+								<c:when test="${not empty sessionScope.Authorized}">
 			Your Account
 		</c:when>
-		<c:otherwise> Sign in </c:otherwise>
-	</c:choose>
-	</a></li>
-	</ul>
-	</div>
-	</div>
+								<c:otherwise> Sign in </c:otherwise>
+							</c:choose>
+					</a></li>
+				</ul>
+			</div>
+		</div>
 	</nav>
-	
+
 
 
 	<h1 style="font-size: 54px">FOODS R US</h1>
@@ -59,14 +56,14 @@
 			<p value="${category.name}" id="category">${category.name}</p>
 			<c:forEach var="item" items="${items}">
 				<c:if test="${item.catId eq category.id}">
-					<form action="" method="Post">
+					<form action="${pageContext.request.contextPath}/Add" method="Post">
 						<table>
 							<tr>
 								<td>${item.name}</td>
 
 							</tr>
 							<tr>
-								<td>${item.number}</td>
+								<td><input type="number" name="${item.number}" value="${item.number}">${item.number}</input></td>
 							</tr>
 							<tr>
 								<td>${item.price}</td>
@@ -77,7 +74,7 @@
 							<tr>
 								<td>Quantity to Purchase:</td>
 								<td><input type="text" name="qty" value="1"></input></td>
-								<td><input type="submit" id="${item.number}" name="${item.number}" value="Add to Cart"></input></td>
+								<td><input type="submit" value="Add to Cart"></input></td>
 							</tr>
 						</table>
 					</form>
