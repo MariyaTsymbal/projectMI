@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import b2c.CartItem;
 import model.CategoryBean;
 import model.CategoryDAO;
 import model.ItemBean;
@@ -38,6 +39,10 @@ public class Home extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		try{response.setContentType("text/plain");
+		
+		//ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+		//request.setAttribute("cartItems", cartItems);
+		
 		
 		CategoryDAO cd = new CategoryDAO();
 		System.out.println("1");

@@ -51,6 +51,7 @@
 
 	<h1 style="font-size: 54px">FOODS R US</h1>
 
+
 	<c:if test="${not empty categories}">
 		<c:forEach var="category" items="${categories}">
 			<p value="${category.name}" id="category">${category.name}</p>
@@ -63,7 +64,7 @@
 
 							</tr>
 							<tr>
-								<td><input type="number" name="${item.number}" value="${item.number}">${item.number}</input></td>
+								<td>${item.number}</td>
 							</tr>
 							<tr>
 								<td>${item.price}</td>
@@ -74,7 +75,7 @@
 							<tr>
 								<td>Quantity to Purchase:</td>
 								<td><input type="text" name="qty" value="1"></input></td>
-								<td><input type="submit" value="Add to Cart"></input></td>
+								<td><input type="submit" name="${item.number}" value="Add to Cart"></input></td>
 							</tr>
 						</table>
 					</form>
