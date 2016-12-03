@@ -1,4 +1,4 @@
-package b2c;
+ppackage b2c;
 
 public class CartItem
 {
@@ -23,8 +23,23 @@ public class CartItem
 	}
 
 
-	public CartItem()
+	public String getNumber()
 	{
-		
+		return number;
 	}
+
+
+	public String getName()
+	{
+		return name;
+	}
+
+
+	public double getPrice()
+	{
+		return price;
+	}
+
+
+	
 }

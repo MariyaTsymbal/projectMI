@@ -62,11 +62,14 @@
 		<input type="button" class="but" name="shopMore" id="shopMore"
 			value="Continue Shopping" />
 	</div>
-	<c:if test="${not empty test}">
-	<c:forEach var="item" items="test">
-	${item.name}
+<c:if test="${not empty test}">
+	<c:forEach var="item" items="${test}">
+		${item.getName() } <br/>
+		${item.getNumber() } <br/>
+		${item.getPrice() } <br/>
 	</c:forEach>
 	</c:if>
+			
 				
 				
 
