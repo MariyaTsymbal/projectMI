@@ -14,16 +14,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link media="screen, print" title="cse4413" type="text/css"
 	href="css/Food.css" rel="StyleSheet" />
-	<SCRIPT type="text/javascript">
-	function productPrice()
-	{
-	var price = document.getElementById("price");
-	var qty = document.getElementById("qty");
-	var result= price*qty;
-	return result;
-	}
-	document.getElementById("productPrice").innerHTML=productPrice();
-	</SCRIPT>
 </head>
 <body>
 	<nav class="top-nav">
@@ -45,13 +35,15 @@
 						</button>
 					</li>
 
-					<li><a href="${pageContext.request.contextPath}/Admin"> <c:choose>
-								<c:when test="${not empty sessionScope.Authorized}">
-			Your Account
+					<li><c:choose>
+		<c:when test="${not empty sessionScope.Authorized}">
+		<a href="${pageContext.request.contextPath}/Auth" > 
+			Your Account </a>
 		</c:when>
-								<c:otherwise> Sign in </c:otherwise>
-							</c:choose>
-					</a></li>
+		<c:otherwise> 
+		<a href="${pageContext.request.contextPath}/Admin"> Sign in </a>
+		</c:otherwise>
+	</c:choose></li>
 				</ul>
 			</div>
 		</div>
@@ -61,47 +53,27 @@
 	<div>
 		<h1>Shopping Bag</h1>
 		<hr />
-		
+		Helloo
+		<div style="display:block">
+		hii
+			
+				
+			
+		</div>
 
-		
+		<input type="button" class="but" name="shopMore" id="shopMore"
+			value="Continue Shopping" />
+			
 	</div>
 	<c:if test="${not empty test}">
-
-		<table>
-			<tr>
-			<td>Number
-			</td>
-			<td>Name
-			</td>
-			<td>Price
-			</td>
-			<td>Quantity
-			</td>
-			<td>Total for product
-			</td>
-			</tr>
-
-			<c:forEach var="item" items="${test}">
-				<tr>
-				<td>${item.getName() }</td>
-				<td>${item.getNumber() }</td>
-				<td id="price">${item.getPrice() }
-				</td>
-				<td><input type="text" id="qty" value="${item.getQty() }"></input> </td>
-				<td id="productPrice"></td>
-
-				</tr>
-
-			</c:forEach>
-		</table>
+	<c:forEach var="item" items="${test}">
+		${item.getName() } <br/>
+		${item.getNumber() } <br/>
+		${item.getPrice() } <br/>
+	</c:forEach>
 	</c:if>
-
-<input type="button" class="but" name="shopMore" id="shopMore"
-			value="Continue Shopping" />
-
-
-
-
+				
+				
 
 	<div>
 		<h1>Order summary</h1>

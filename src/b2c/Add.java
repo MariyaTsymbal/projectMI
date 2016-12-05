@@ -61,11 +61,8 @@ public class Add extends HttpServlet
 		}
 		// Enumeration<String> enumer =request.getParameterNames();
 		Map<String, String[]> params = request.getParameterMap();
-		ArrayList<CartItem> cartItems = (ArrayList<CartItem>) request.getSession().getAttribute("cartItems");
-		
+		ArrayList<CartItem> cartItems = (ArrayList<CartItem>) request.getAttribute("cartItems");
 		ArrayList<CartItem> bla = new ArrayList<CartItem>();
-		int qty=Integer.parseInt(request.getParameter("qty"));
-		//ArrayList<CartItem> bla=cartItems;
 		for (int i = 0; i < items.size(); i++)
 		{
 			String number = items.get(i).getNumber();
@@ -79,7 +76,7 @@ public class Add extends HttpServlet
 				System.out.println("Add/Item to add,name:" +name);
 				double price = added.getPrice();
 				System.out.println("Add/Item to add,price:"+price);
-				CartItem addToCart =  new CartItem(number, name, price,qty);
+				CartItem addToCart =  new CartItem(number, name, price);
 				System.out.println("Add/ "+addToCart.toString());
 				try{bla.add(addToCart);}
 				catch(Exception e)
@@ -93,16 +90,14 @@ public class Add extends HttpServlet
 			}
 
 		}
-		//String num=bla.get(0).number;
-		//System.out.println("Add/ number "+num);
+		String num=bla.get(0).number;
+		System.out.println("Add/ number "+num);
 		request.setAttribute("test", bla);
-		//request.getSession().removeAttribute("cartItems");
-		//request.getSession().setAttribute("cartItems", bla);
 		
 		
 		
 		
-		//System.out.println("Add/Number of items in a cart: "+ bla.size() );
+		System.out.println("Add/Number of items in a cart: "+ bla.size() );
 
 		this.getServletContext().getRequestDispatcher("/Cart.jsp").forward(request, response);
 		//System.out.println("Checkc param: " + request.getParameter("2910h019"));
