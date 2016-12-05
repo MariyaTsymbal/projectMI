@@ -26,7 +26,7 @@
 	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 	</li>
 	<li>
-	<a href="${pageContext.request.contextPath}/Cart"> <i class="fa fa-shopping-cart">Checkout</i></a>
+	<a href="${pageContext.request.contextPath}/Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
 	</li>
 	<li>
 	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
