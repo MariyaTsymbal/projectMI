@@ -19,14 +19,14 @@
 	<nav class="top-nav">
 		<div class="top">
 			<div class="logo">
-				<a href="${pageContext.request.contextPath}/eFoods"> FOODS R US</a>
+				<a href="${pageContext.request.contextPath}/home.jsp"> FOODS R US</a>
 			</div>
 
 			<div class="links">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 					</li>
-					<li><a href="${pageContext.request.contextPath}/Cart"> <i
+					<li><a href="${pageContext.request.contextPath}/Cart.jsp"> <i
 							class="fa fa-shopping-cart">Checkout</i></a></li>
 					<li>Search: <input type="text" id="searchBar" name="searchBar"
 						value="search for products..." />
@@ -65,8 +65,8 @@
 			value="Continue Shopping" />
 			
 	</div>
-	<c:if test="${not empty test}">
-	<c:forEach var="item" items="${test}">
+	<c:if test="${not empty sessionScope.test}">
+	<c:forEach var="item" items="${sessionScope.test}">
 		${item.getName() } <br/>
 		${item.getNumber() } <br/>
 		${item.getPrice() } <br/>
@@ -75,6 +75,7 @@
 				
 				
 
+<form>
 	<div>
 		<h1>Order summary</h1>
 		<hr />
@@ -118,7 +119,7 @@
 			value="Checkout" />
 
 	</div>
-
+</from>
 </body>
 	</html>
 </jsp:root>
