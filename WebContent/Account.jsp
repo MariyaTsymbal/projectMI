@@ -35,16 +35,14 @@
 	</li>
 	
 	<li>
+	<a href="${pageContext.request.contextPath}/Admin" > 
 	<c:choose>
 		<c:when test="${not empty sessionScope.Authorized}">
-		<a href="${pageContext.request.contextPath}/Auth" > 
-			Your Account </a>
+			Your Account
 		</c:when>
-		<c:otherwise> 
-		<a href="${pageContext.request.contextPath}/Admin"> Sign in </a>
-		</c:otherwise>
+		<c:otherwise> Sign in </c:otherwise>
 	</c:choose>
-	</li>
+	</a></li>
 	</ul>
 	</div>
 	</div>
@@ -53,7 +51,6 @@
 	
 <form action="" method="POST">
 			<div><h1>Welcome ${sessionScope.user }!!</h1> <hr/>
-			Your name is: ${sessionScope.name }
 			<input type="submit" class="but" id="browse" name="browse" value="Back to Browse"/><br/>
 			<input type="submit" class="but" id="logout" name="logout" value="Log Out"/>
 			<hr/>

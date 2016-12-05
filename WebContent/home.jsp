@@ -35,15 +35,13 @@
 						</button>
 					</li>
 
-					<li><c:choose>
-		<c:when test="${not empty sessionScope.Authorized}">
-		<a href="${pageContext.request.contextPath}/Auth" > 
-			Your Account </a>
+					<li><a href="${pageContext.request.contextPath}/Admin"> <c:choose>
+								<c:when test="${not empty sessionScope.Authorized}">
+			Your Account
 		</c:when>
-		<c:otherwise> 
-		<a href="${pageContext.request.contextPath}/Admin"> Sign in </a>
-		</c:otherwise>
-	</c:choose></li>
+								<c:otherwise> Sign in </c:otherwise>
+							</c:choose>
+					</a></li>
 				</ul>
 			</div>
 		</div>
