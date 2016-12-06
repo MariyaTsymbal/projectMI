@@ -28,7 +28,7 @@
 					</li>
 					<li><a href="${pageContext.request.contextPath}/Cart.jsp"> <i
 							class="fa fa-shopping-cart">Checkout</i></a></li>					
-						<form action="${pageContext.request.contextPath}/Search" method="POST">
+						<form style="display:inline" action="${pageContext.request.contextPath}/Search" method="POST">
 						<li>Search: <input type="text" id="searchBar" name="searchBar"
 						value="search for products..." />
 						<button type="submit" name="searchButton" id="searchButton" >
@@ -74,13 +74,11 @@
 							<tr>
 								<td>${item.price}</td>
 							</tr>
-							<tr>
-								<td>${item.qty}</td>
-							</tr>
+							
 							<tr>
 								<td>Quantity to Purchase:</td>
-								<td><input type="text" for="${item.number }" name="qty" value="1"></input></td>
-								<td><input type="submit" name="${item.number}" id="${item.number }"  value="Add to Cart"></input></td>
+								<td><input type="text" for="${item.getNumber() }" name="qty" value="1"/></td>
+								<td><input type="submit" name="${item.getNumber()}" id="${item.getNumber() }"  value="Add to Cart"/></td>
 							</tr>
 						</table>
 					</form>

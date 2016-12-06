@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ItemBean;
 import model.ItemDao;
+import model.Model;
 
 /**
  * Servlet implementation class Add
@@ -42,17 +43,28 @@ public class Add extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		Date date = new Date();
 		time.add(date.getTime());
 		request.getSession().setAttribute("cartaverage", time);
 		System.out.println("Add/ time is "+date.getTime());
 		
 
+		
+		Model m = null;
+
+		try
+		{
+			m = new Model();
+		} catch (Exception e2)
+		{
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		ArrayList<ItemBean> items = null;
 		ItemDao getItems = null;
 		try
 		{
+
 			getItems = new ItemDao();
 			items = getItems.getItems();
 		} catch (Exception e1)
@@ -60,76 +72,68 @@ public class Add extends HttpServlet
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try
-		{
-			System.out.println("Size of toAdd " + items.size());
-		} catch (Exception e)
-		{
-			
-		}
+
 		// Enumeration<String> enumer =request.getParameterNames();
-		int qty=0;
-		for(int i=0; i<items.size();i++){
-		if (request.getParameter(items.get(i).getNumber()) !=null || request.getParameter("update") != null){
-			qty=Integer.parseInt(request.getParameter("qty"));
-			
-			CartItem c = new CartItem(items.get(i).getNumber(),items.get(i).getName(), items.get(i).getPrice(), qty);
-			if(c.getQty()==0){
-				itemList.remove(c);
-			}
-			else{
-			for(int k=0; k<itemList.size(); k++){
-				if(itemList.get(k).getNumber().equals(c.getNumber())){
-					
-					itemList.remove(k);
-				
-				}
-				
-			}
-			
-			itemList.add(c);
-			}
-			
-		}
-		}
-		/*
-		Map<String, String[]> params = request.getParameterMap();
+		int qty = 0;
 		for (int i = 0; i < items.size(); i++)
 		{
-			String number = items.get(i).getNumber();
-			String checkNull = request.getParameter(number);
-			if (checkNull != null)
+			if (request.getParameter(items.get(i).getNumber()) != null || request.getParameter("Update") != null)
 			{
-				System.out.println("Add/Is added to cart: " + number);
-				ItemBean added = getItems.getItemBean(number);
-				System.out.println("Add/Item to add,number:"+number);
-				String name = added.getName();
-				System.out.println("Add/Item to add,name:" +name);
-				double price = added.getPrice();
-				System.out.println("Add/Item to add,price:"+price);
-				CartItem addToCart =  new CartItem(number, name, price);
-				System.out.println("Add/ "+addToCart.toString());
-				try{bla.add(addToCart);}
-				catch(Exception e)
-				{
-					System.out.println("Add/SHit happened");
-				}
-				
-		*/
-			
-				
 
-			
+				qty = Integer.parseInt(request.getParameter("qty"));
+				System.out.println(request.getParameter("qty"));
+				System.out.println(qty);
+				CartItem c = new CartItem(items.get(i).getNumber(), items.get(i).getName(), items.get(i).getPrice(),
+						qty);
+
+				if (c.getQty() == 0)
+				{
+					itemList.remove(c);
+				} else
+				{
+					for (int k = 0; k < itemList.size(); k++)
+					{
+						if (itemList.get(k).getNumber().equals(c.getNumber()))
+						{
+
+							itemList.remove(k);
+
+						}
+
+					}
+
+					itemList.add(c);
+				}
+
+			}
+		}
 
 		request.getSession().setAttribute("test", itemList);
-		
-		
-		
-		
-		System.out.println("Add/Number of items in a cart: "+ itemList.size() );
+		String hst = request.getServletContext().getInitParameter("HST");
+		String itemTotal = m.itemTotal(itemList);
+		String cartTotal = m.cartTotal(itemTotal, hst);
+		String taxes = m.taxesApplied(itemTotal, hst);
+		String itemCount = m.totalItems(itemList);
+
+		request.getSession().setAttribute("itemCount", itemCount);
+		request.getSession().setAttribute("PriceTotal", itemTotal);
+		if (Double.parseDouble(itemTotal) > 100)
+		{
+			request.getSession().setAttribute("PriceTotalInt", Double.parseDouble(itemTotal));
+		} else
+		{
+			request.getSession().removeAttribute("PriceTotalInt");
+		}
+		request.getSession().setAttribute("TaxApplied", taxes);
+
+		request.getSession().setAttribute("Sum", cartTotal);
+
+		// System.out.println("Add/Number of items in a cart: "+ itemList.size()
+		// );
 
 		this.getServletContext().getRequestDispatcher("/Cart.jsp").forward(request, response);
-		//System.out.println("Checkc param: " + request.getParameter("2910h019"));
+		// System.out.println("Checkc param: " +
+		// request.getParameter("2910h019"));
 
 	}
 

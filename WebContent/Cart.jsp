@@ -26,15 +26,16 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 					</li>
-					<li><a href="${pageContext.request.contextPath}/Add"> <i
-							class="fa fa-shopping-cart">Checkout</i></a></li>
-					<li>Search: <input type="text" id="searchBar" name="searchBar"
+					
+				<li><a href="${pageContext.request.contextPath}/Cart.jsp"> <i
+							class="fa fa-shopping-cart">Checkout</i></a></li>					
+						<form style="display:inline" action="${pageContext.request.contextPath}/Search" method="POST">
+						<li>Search: <input type="text" id="searchBar" name="searchBar"
 						value="search for products..." />
-						<button type="submit" name="searchButton" id="searchButton">
-							<i class="fa fa-search"> .</i>
-						</button>
-					</li>
-
+						<button type="submit" name="searchButton" id="searchButton" >
+							<i class="fa fa-search"> .</i></button></li>
+						
+						</form>
 					<li><c:choose>
 		<c:when test="${not empty sessionScope.Authorized}">
 		<a href="${pageContext.request.contextPath}/Auth" > 
@@ -53,33 +54,28 @@
 	<div>
 		<h1>Shopping Bag</h1>
 		<hr />
-		Helloo
+		
 		<div style="display:block">
-		hii
+		
 			
 				
 			
 		</div>
 
-		<input type="button" class="but" name="shopMore" id="shopMore"
-			value="Continue Shopping" />
 </div>
 <form method="POST" action="${pageContext.request.contextPath}/Add">			
-	<c:if test="${not empty sessionScope.test}">
+<c:if test="${not empty test}">
 	<c:forEach var="item" items="${sessionScope.test}">
 		${item.getName() } <br/>
 		${item.getNumber() } <br/>
 		${item.getPrice() } <br/>
 		${item.getQty() } <br/>
-		<input type="text" for="${item.number }" name="qty" value="1"></input>
+		<input type="text" for="${item.number }" name="qty" value="1"/>
 		<input type="submit" name="${item.number}" id="${item.number }" value="Update"></input><br/>
 		
 	</c:forEach>
-	</c:if>
-</form>			
-				
+</c:if>
 
-<form>
 	<div>
 		<h1>Order summary</h1>
 		<hr />
@@ -92,14 +88,11 @@
 				<td>Total Price</td>
 				<td>$${PriceTotal }</td>
 			</tr>
-			<tr>
-				<td>Taxes</td>
-				<td>$${TaxApplied }</td>
-			</tr>
+			
 			<tr>
 				<td>Shipping</td>
 				<c:choose>
-					<c:when test="${PriceTotal} ge 100">
+					<c:when test="${not empty sessionScope.PriceTotalInt}">
 						<td>Free!</td>
 					</c:when>
 					<c:otherwise>
@@ -108,13 +101,13 @@
 				</c:choose>
 			</tr>
 			<tr>
-				<td>Discount</td>
-				<td>$${Discount }</td>
+				<td>Taxes</td>
+				<td>$${TaxApplied }</td>
 			</tr>
 			<hr />
 			<tr>
 				<td>Total</td>
-				<td>${Sum }</td>
+				<td>$${Sum }</td>
 			</tr>
 
 		</table>

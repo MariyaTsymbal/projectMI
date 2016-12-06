@@ -25,17 +25,19 @@
 	<li>
 	<a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 	</li>
-	<li>
-	<a href="${pageContext.request.contextPath}/Cart.jsp"> <i class="fa fa-shopping-cart">Checkout</i></a>
-	</li>
-	<li>
-	Search: <input type="text" id="searchBar" name="searchBar" value="search for products..."/>
-	<button type="submit" name="searchButton" id="searchButton"> <i class="fa fa-search"> .</i>
-	</button>
-	</li>
-	
-	<li>
-	<c:choose>
+	<li><a href="${pageContext.request.contextPath}/Cart.jsp"> <i
+							class="fa fa-shopping-cart">Checkout</i></a></li>					
+						<form style="display:inline" action="${pageContext.request.contextPath}/Search" method="POST">
+						<li>Search: <input type="text" id="searchBar" name="searchBar"
+						value="search for products..." />
+						<button type="submit" name="searchButton" id="searchButton" >
+							<i class="fa fa-search"> .</i></button></li>
+						
+						</form>
+						
+					
+
+					<li><c:choose>
 		<c:when test="${not empty sessionScope.Authorized}">
 		<a href="${pageContext.request.contextPath}/Auth" > 
 			Your Account </a>
