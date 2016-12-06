@@ -2,6 +2,7 @@ package b2c;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ public class Add extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	ArrayList<CartItem> itemList = new ArrayList<CartItem>();
+	ArrayList<Long> time = new ArrayList<Long>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -40,6 +42,12 @@ public class Add extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		Date date = new Date();
+		time.add(date.getTime());
+		request.getSession().setAttribute("cartaverage", time);
+		System.out.println("Add/ time is "+date.getTime());
+		
 
 		ArrayList<ItemBean> items = null;
 		ItemDao getItems = null;
@@ -57,7 +65,7 @@ public class Add extends HttpServlet
 			System.out.println("Size of toAdd " + items.size());
 		} catch (Exception e)
 		{
-			System.out.println("Fuck you");
+			
 		}
 		// Enumeration<String> enumer =request.getParameterNames();
 		int qty=0;
