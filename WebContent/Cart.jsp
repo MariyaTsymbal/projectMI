@@ -119,7 +119,7 @@
 			value="Checkout" />
 
 	</div>
-</from>
+</form>
 </body>
 	</html>
 </jsp:root>

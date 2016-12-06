@@ -1,4 +1,4 @@
-ppackage b2c;
+package b2c;
 
 public class CartItem
 {

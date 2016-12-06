@@ -39,8 +39,7 @@ public class Add extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("Bitch you for it");
-
+		
 		ArrayList<ItemBean> items = null;
 		ItemDao getItems = null;
 		try

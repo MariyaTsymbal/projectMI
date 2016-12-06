@@ -15,8 +15,7 @@
 <link media="screen, print" title="cse4413" type="text/css"
 	href="css/Food.css" rel="StyleSheet" />
 </head>
-<body>
-	<nav class="top-nav">
+<nav class="top-nav">
 		<div class="top">
 			<div class="logo">
 				<a href="home.jsp"> FOODS R US</a>
@@ -51,43 +50,27 @@
 			</div>
 		</div>
 	</nav>
+<body>
 
-
-
-	<h1 style="font-size: 54px">FOODS R US</h1>
-
-
-	<c:if test="${not empty categories}">
-		<c:forEach var="category" items="${categories}">
-			<p value="${category.name}" id="category">${category.name}</p>
-			<c:forEach var="item" items="${items}">
-				<c:if test="${item.catId eq category.id}">
-					<form action="${pageContext.request.contextPath}/Add" method="Post">
-						<table>
+<c:if test="${not empty searchResult}">
+<table>
 							<tr>
-								<td>${item.name}</td>
+								<td>${searchResult.name}</td>
 
 							</tr>
 							<tr>
-								<td>${item.number}</td>
+								<td>${searchResult.number}</td>
 							</tr>
 							<tr>
-								<td>${item.price}</td>
-							</tr>
-							<tr>
-								<td>${item.qty}</td>
-							</tr>
+								<td>${searchResult.price}</td>
+							</tr>							
 							<tr>
 								<td>Quantity to Purchase:</td>
 								<td><input type="text" name="qty" value="1"></input></td>
 								<td><input type="submit" name="${item.number}" value="Add to Cart"></input></td>
 							</tr>
 						</table>
-					</form>
-				</c:if>
-			</c:forEach>
-		</c:forEach>
-	</c:if>
+</c:if>
 
 </body>
 	</html>
