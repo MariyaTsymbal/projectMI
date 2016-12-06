@@ -21,6 +21,7 @@ import model.ItemDao;
 public class Add extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	ArrayList<CartItem> itemList = new ArrayList<CartItem>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,7 +40,7 @@ public class Add extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+
 		ArrayList<ItemBean> items = null;
 		ItemDao getItems = null;
 		try
@@ -59,9 +60,32 @@ public class Add extends HttpServlet
 			System.out.println("Fuck you");
 		}
 		// Enumeration<String> enumer =request.getParameterNames();
+		int qty=0;
+		for(int i=0; i<items.size();i++){
+		if (request.getParameter(items.get(i).getNumber()) !=null || request.getParameter("update") != null){
+			qty=Integer.parseInt(request.getParameter("qty"));
+			
+			CartItem c = new CartItem(items.get(i).getNumber(),items.get(i).getName(), items.get(i).getPrice(), qty);
+			if(c.getQty()==0){
+				itemList.remove(c);
+			}
+			else{
+			for(int k=0; k<itemList.size(); k++){
+				if(itemList.get(k).getNumber().equals(c.getNumber())){
+					
+					itemList.remove(k);
+				
+				}
+				
+			}
+			
+			itemList.add(c);
+			}
+			
+		}
+		}
+		/*
 		Map<String, String[]> params = request.getParameterMap();
-		ArrayList<CartItem> cartItems = (ArrayList<CartItem>) request.getAttribute("cartItems");
-		ArrayList<CartItem> bla = new ArrayList<CartItem>();
 		for (int i = 0; i < items.size(); i++)
 		{
 			String number = items.get(i).getNumber();
@@ -83,20 +107,18 @@ public class Add extends HttpServlet
 					System.out.println("Add/SHit happened");
 				}
 				
-				
+		*/
+			
 				
 
-			}
+			
 
-		}
-		String num=bla.get(0).number;
-		System.out.println("Add/ number "+num);
-		request.setAttribute("test", bla);
+		request.getSession().setAttribute("test", itemList);
 		
 		
 		
 		
-		System.out.println("Add/Number of items in a cart: "+ bla.size() );
+		System.out.println("Add/Number of items in a cart: "+ itemList.size() );
 
 		this.getServletContext().getRequestDispatcher("/Cart.jsp").forward(request, response);
 		//System.out.println("Checkc param: " + request.getParameter("2910h019"));

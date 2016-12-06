@@ -79,8 +79,8 @@
 							</tr>
 							<tr>
 								<td>Quantity to Purchase:</td>
-								<td><input type="text" name="qty" value="1"></input></td>
-								<td><input type="submit" name="${item.number}" value="Add to Cart"></input></td>
+								<td><input type="text" for="${item.number }" name="qty" value="1"></input></td>
+								<td><input type="submit" name="${item.number}" id="${item.number }"  value="Add to Cart"></input></td>
 							</tr>
 						</table>
 					</form>

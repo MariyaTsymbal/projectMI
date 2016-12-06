@@ -26,7 +26,7 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/eFoods">Browse</a>
 					</li>
-					<li><a href="${pageContext.request.contextPath}/Cart.jsp"> <i
+					<li><a href="${pageContext.request.contextPath}/Add"> <i
 							class="fa fa-shopping-cart">Checkout</i></a></li>
 					<li>Search: <input type="text" id="searchBar" name="searchBar"
 						value="search for products..." />
@@ -63,16 +63,20 @@
 
 		<input type="button" class="but" name="shopMore" id="shopMore"
 			value="Continue Shopping" />
-			
-	</div>
+</div>
+<form method="POST" action="${pageContext.request.contextPath}/Add">			
 	<c:if test="${not empty sessionScope.test}">
 	<c:forEach var="item" items="${sessionScope.test}">
 		${item.getName() } <br/>
 		${item.getNumber() } <br/>
 		${item.getPrice() } <br/>
+		${item.getQty() } <br/>
+		<input type="text" for="${item.number }" name="qty" value="1"></input>
+		<input type="submit" name="${item.number}" id="${item.number }" value="Update"></input><br/>
+		
 	</c:forEach>
 	</c:if>
-				
+</form>			
 				
 
 <form>
